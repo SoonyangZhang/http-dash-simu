@@ -6,7 +6,9 @@ the code in https://github.com/SoonyangZhang/net
 include_directories(${CMAKE_SOURCE_DIR}/logging)  
 include_directories(${CMAKE_SOURCE_DIR}/base)  
 include_directories(${CMAKE_SOURCE_DIR}/tcp)     
-```  
+```
+Download the project and put the folders (logging,base,tcp) under http-dash-simu.   
+
 The adaptation algorithms are refered from https://github.com/haraldott/dash   
 and https://github.com/djvergad/dash 
 Thanks for their contribution.  
@@ -19,19 +21,22 @@ Eight algorithms are implemented:
 - [x] FDASH: A Fuzzy-Based MPEG/DASH Adaptation Algorithm   
 - [x] sftm: Rate adaptation for dynamic adaptive streaming over HTTP in content distribution network  
 - [x] svaa: Towards agile and smooth video adaptation in dynamic HTTP streaming  
-Download the project and put the folders (logging,base,tcp) under http-dash-simu.  
+
+
 # Build
 ```
 cd build  
 cmake ..
 make
 ```
+
 Test  
 ```
 cd build   
 sudo su  
 python 2h1s.py  
 ```
+
 During the emulation, the pairs (time, downloaded segments, downloaded video quality) will be loggged out.  
 Plot the results:  
 ```
