@@ -115,6 +115,7 @@ void DashServerBackend::CreateEndpoint(basic::BaseContext *context,int fd){
     UNUSED(endpoint);
 }
 PhysicalSocketServer* DashSocketFactory::CreateSocketServer(BaseContext *context){
-    return new  PhysicalSocketServer(context,&backend_);
+    std::unique_ptr<DashServerBackend> backend(new DashServerBackend());
+    return new  PhysicalSocketServer(context,std::move(backend));
 }
 }

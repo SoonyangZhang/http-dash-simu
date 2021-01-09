@@ -35,7 +35,5 @@ class DashSocketFactory: public SocketServerFactory{
 public:
     ~DashSocketFactory(){}
     PhysicalSocketServer* CreateSocketServer(BaseContext *context) override;
-private:
-    DashServerBackend backend_;
 };    
 }
