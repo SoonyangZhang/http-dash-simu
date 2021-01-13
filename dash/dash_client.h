@@ -80,7 +80,7 @@ private:
     QuicTime::Delta startup_time_{QuicTime::Delta::Zero()};
     struct sockaddr_storage src_addr_;
     struct sockaddr_storage dst_addr_;
-    TcpConnectionStatus status_{DISCONNECT};
+    TcpConnectionStatus status_{TCP_DISCONNECT};
     DashPlayerState player_state_=PLAYER_NOT_STARTED;
     ThroughputData throughput_;
     BufferData buffer_data_;

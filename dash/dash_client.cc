@@ -83,7 +83,7 @@ bool DashClient::AsynConnect(basic::SocketAddress &local,basic::SocketAddress& r
         }
         player_state_=PLAYER_INIT_BUFFERING;        
     }
-    status_=CONNECTING;
+    status_=TCP_CONNECTING;
     return true;
 }
 void DashClient::OnEvent(int fd, basic::EpollEvent* event){
@@ -97,8 +97,8 @@ void DashClient::OnEvent(int fd, basic::EpollEvent* event){
         OnReadEvent(fd);
     }    
     if(event->in_events&EPOLLOUT){
-        if(status_==CONNECTING){
-            status_=CONNECTED;
+        if(status_==TCP_CONNECTING){
+            status_=TCP_CONNECTED;
             eps_->ModifyCallback(fd_,EPOLLIN | EPOLLRDHUP | EPOLLERR | EPOLLET);
             OnConnected();
         }
@@ -189,7 +189,7 @@ void DashClient::OnConnected(){
 }
 void DashClient::Close(){
     if(fd_>0){
-        status_=DISCONNECT;
+        status_=TCP_DISCONNECT;
         close(fd_);
         fd_=-1;        
     }      
