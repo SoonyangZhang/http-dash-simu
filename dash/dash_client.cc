@@ -131,7 +131,7 @@ void DashClient::SetAdaptationAlgorithm(std::unique_ptr<AdaptationAlgorithm> alg
 void DashClient::OnReadEvent(int fd){
     char buffer[kBufferSize];
     while(true){
-        size_t nbytes=read(fd,buffer,kBufferSize);  
+        int nbytes=read(fd,buffer,kBufferSize);  
         if (nbytes == -1) {
             //if(errno == EWOULDBLOCK|| errno == EAGAIN){}
             break;            
