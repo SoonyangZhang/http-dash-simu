@@ -40,7 +40,7 @@ public:
     int64_t get_buffer_diff_ms();
     void PlayBackHandle();
     void DelayRequestHandle();
-    void SetAdaptationAlgorithm(std::unique_ptr<AdaptationAlgorithm> algorithm);
+    void SetAdaptationAlgorithm(std::string &algo);
     const VideoData & get_video_data() {return video_data_ ;}
     const ThroughputData &get_throughput(){return throughput_;}
     const std::deque<int> & get_history_quality(){return history_quality_;}

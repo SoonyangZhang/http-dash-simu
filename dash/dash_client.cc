@@ -123,9 +123,21 @@ int64_t DashClient::get_buffer_diff_ms(){
     }
     return diff;
 }
-void DashClient::SetAdaptationAlgorithm(std::unique_ptr<AdaptationAlgorithm> algorithm){
-    if(algorithm){
-        algorithm_=std::move(algorithm);
+void DashClient::SetAdaptationAlgorithm(std::string &algo){
+    if(algo.compare("panda")==0){
+        algorithm_.reset(new PandaAlgorithm());
+    }else if(algo.compare("tobasco")==0){
+        algorithm_.reset(new TobascoAlgorithm());    
+    }else if(algo.compare("osmp")==0){
+        algorithm_.reset(new OsmpAlgorithm());
+    }else if(algo.compare("raahs")==0){
+        algorithm_.reset(new RaahsAlgorithm()); 
+    }else if(algo.compare("fdash")==0){
+        algorithm_.reset(new FdashAlgorithm());
+    }else if(algo.compare("sftm")==0){
+        algorithm_.reset(new SftmAlgorithm());
+    }else if(algo.compare("svaa")==0){
+        algorithm_.reset(new SvaaAlgorithm());
     }
 }
 void DashClient::OnReadEvent(int fd){

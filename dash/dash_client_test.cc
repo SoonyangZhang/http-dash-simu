@@ -60,31 +60,24 @@ int main(int argc, char *argv[]){
     std::string result;
     std::unique_ptr<AdaptationAlgorithm> algo;
     if(adapation.compare("panda")==0){
-        algo.reset(new PandaAlgorithm());
         result=std::string("dash_panda_result.txt");
     }else if(adapation.compare("tobasco")==0){
-        algo.reset(new TobascoAlgorithm());
         result=std::string("dash_tobasco_result.txt");        
     }else if(adapation.compare("osmp")==0){
-        algo.reset(new OsmpAlgorithm());
         result=std::string("dash_osmp_result.txt");        
     }else if(adapation.compare("raahs")==0){
-        algo.reset(new RaahsAlgorithm());
         result=std::string("dash_raahs_result.txt");        
     }else if(adapation.compare("fdash")==0){
-        algo.reset(new FdashAlgorithm());
         result=std::string("dash_fdash_result.txt");        
     }else if(adapation.compare("sftm")==0){
-        algo.reset(new SftmAlgorithm());
         result=std::string("dash_sftm_result.txt");        
     }else if(adapation.compare("svaa")==0){
-        algo.reset(new SvaaAlgorithm());
         result=std::string("dash_svaa_result.txt");        
     }else{
         result=std::string("dash_festive_result.txt");
     }
     basic::DashClient *client=new basic::DashClient(epoll_server,duration,video_log,result);
-    client->SetAdaptationAlgorithm(std::move(algo));
+    client->SetAdaptationAlgorithm(adapation);
     bool success=client->AsynConnect(src_addr,dst_addr);
     if(success){  
         while(g_running){
